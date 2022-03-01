@@ -2,17 +2,22 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "watch":"node-sass -w src/assets/scss -o src/public/css",
+    "start": "nodemon --experimental-modules --inspect src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.2"
   },
   "devDependencies": {
+    "morgan": "^1.10.0",
+    "node-sass": "^7.0.1",
     "nodemon": "^2.0.15"
   }
 }
