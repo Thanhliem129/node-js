@@ -1,33 +1,31 @@
-import express from 'express';
-import morgan from 'morgan'
-import path from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const express = require('express') 
+// const morgan = require('morgan') 
+const path = require('path') 
+const route =  require('./routes') 
+const handlebars = require('express-handlebars') 
 
-
-import { engine  } from 'express-handlebars';
-
-const app = express();
-
+const app = express()
 
 const port = 3000
 
-app.use(morgan('combined'))
+// app.use(morgan('combined'))
+
+app.use(express.urlencoded({
+  extended: true
+}))
+app.use(express.json())
+
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.engine('.hbs', engine({extname: '.hbs'}));
-// app.engine('handlebars', hbs.engine);
-app.set('view engine', '.hbs');
-app.set('views', path.join(__dirname, '/assets/views'));
+app.engine('.hbs', handlebars.engine({
+  extname: '.hbs'
+}))
 
-app.get('/', (req, res) => {
-  res.render('home');
-})
+app.set('view engine', '.hbs')
+app.set('views', path.join(__dirname, '/screens/views'))
 
-app.get('/news', (req, res) => {
-  res.render('news');
-})
+//route
+route(app)
 
 
 app.listen(port, () => {
