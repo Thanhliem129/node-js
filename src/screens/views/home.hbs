@@ -1,1 +1,24 @@
-<h1>Example App: Home</h1>
+<div>
+  <h1>Home page</h1>
+  <div class="row">
+  
+    {{#each collaborators}}
+      <div class="col-md-4">
+        <div class="card " style="width: 18rem;">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{this.name}}</h5>
+            <p class="card-text">Age: {{this.age}}</p>
+            <p class="card-text">address: {{this.address}}</p>
+            <a class="text-decoration-none" href="/user/{{this.slug}}"><button class="btn btn-info">Xem chi tiết</button></a>
+            
+          </div>
+        </div>
+      </div>
+      
+    {{/each}}
+    
+
+  </div>
+    
+</div>
