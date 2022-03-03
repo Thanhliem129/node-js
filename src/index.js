@@ -3,6 +3,7 @@ const express = require('express')
 const path = require('path') 
 const route =  require('./routes') 
 const handlebars = require('express-handlebars') 
+const db = require('./config/db/index') 
 
 const app = express()
 
@@ -22,12 +23,12 @@ app.engine('.hbs', handlebars.engine({
 }))
 
 app.set('view engine', '.hbs')
-app.set('views', path.join(__dirname, '/screens/views'))
+app.set('views', path.join(__dirname, '/screens','views'))
 
 //route
 route(app)
-
+db.connect()
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`App listening on port ${port}`)
 })
